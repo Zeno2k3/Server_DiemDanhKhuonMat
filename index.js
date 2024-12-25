@@ -1,14 +1,13 @@
 const express = require('express')
 const cors = require('cors')
+const authRouter = require('./src/routes/authRouter')
 const app = express()
 
 const PORT = 3001
 app.use(cors())
+app.use(express.json())
 
-app.get('/auth/hello', (_req, res) => {
-    res.send('<h1>Hello world???</h1>')
-});
-
+app.use('/auth', authRouter)
 app.listen(PORT, (err) => {
     if(err){
         console.log(err)
