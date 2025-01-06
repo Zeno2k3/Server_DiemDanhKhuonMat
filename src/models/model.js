@@ -1,33 +1,12 @@
 const mongoose = require('mongoose');
 
-const SinhVien = new mongoose.Schema({
-    name: {
-        type: String,
-        require: true, 
-        unique: true
-    },
-    email: {
-        type: String,
-        require: true,
-        unique: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    mssv: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    photoUrl: {
-        type: String
-    },
-    diemchuyencan: {
-        type: mongoose.Schema.Types.Array
-    }
-})
+const SinhVienSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    mssv: { type: String, required: true , unique: true},
+    diemchuyencan: { type: Array },
+}, { collection: 'sinhvien' }); 
 
-const SinhVienModel = mongoose.model('sinhvien', SinhVien);
-
-module.exports = SinhVienModel;
+const SinhVien = mongoose.model('sinhvien', SinhVienSchema);
+module.exports = SinhVien;
